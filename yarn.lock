@@ -10,6 +10,28 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@ar-js-org/ar.js@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@ar-js-org/ar.js/-/ar.js-3.4.0.tgz#43118de417a15a701a58afcbf34af4dddfc691d1"
+  integrity sha512-zAd+cn7oK7YvX9gatX3Kfdmx4AxWXCHl1WOeOnqd4cvzWAg5dLQGnbkNi2Ni27fOC2nfmaHOdYfpDM3Ba3Unfw==
+  dependencies:
+    "@ar-js-org/artoolkit5-js" "^0.1.3"
+    aframe "^1.0.4"
+    three "^0.133.0"
+
+"@ar-js-org/artoolkit5-js@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@ar-js-org/artoolkit5-js/-/artoolkit5-js-0.1.3.tgz#24c2159aef47f183eea004b0f3fe71345ba7f70e"
+  integrity sha512-VMaWxlM5RTftZjXeZ6PRExhec1DFySHy6IprhBeGHPIg8lJO27FwxaHqwWvY050ANjFZEGRhgjvEjaXEmEi76Q==
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    axios "^0.26.0"
+
+"@artcom/react-three-arjs@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@artcom/react-three-arjs/-/react-three-arjs-0.5.2.tgz#a0795340bd626edd1d5471bab642642b25ca5078"
+  integrity sha512-8VWgFAOFQvZg3ik8aCmK2UOscYoj13Ddc0yRuWnt5AuQNXmaCWWmg/TUP7pCNiuRxSgu19bEQ7pu+l20HQXpww==
+
 "@babel/code-frame@^7.18.6":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.18.6.tgz#3b25d38c89600baa2dcc219edfa88a74eb2c427a"
@@ -206,7 +228,7 @@
     "@babel/plugin-syntax-jsx" "^7.18.6"
     "@babel/types" "^7.18.10"
 
-"@babel/runtime@^7.11.2", "@babel/runtime@^7.16.7", "@babel/runtime@^7.17.8":
+"@babel/runtime@^7.11.2", "@babel/runtime@^7.16.7", "@babel/runtime@^7.17.2", "@babel/runtime@^7.17.8":
   version "7.18.9"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.9.tgz#b4fcfce55db3d2e5e080d2490f608a3b9f407f4a"
   integrity sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==
@@ -472,6 +494,18 @@
   resolved "https://registry.yarnpkg.com/@webgpu/glslang/-/glslang-0.0.15.tgz#f5ccaf6015241e6175f4b90906b053f88483d1f2"
   integrity sha512-niT+Prh3Aff8Uf1MVBVUsaNjFj9rJAKDXuoHIKiQbB+6IUP/3J3JIhBNyZ7lDhytvXxw6ppgnwKZdDJ08UMj4Q==
 
+aframe-extras@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/aframe-extras/-/aframe-extras-6.1.1.tgz#6f158b6c4da12e77d00fd0b97dfe1c72245327df"
+  integrity sha512-w3o3sKfQG+cwe1ZoKUxvMLehh0D/MlvFZeg2XuyIto+Nrs/kGLPcb/fsI5DXM4jociZ3wVQfqcA1BVF+0Nq45A==
+  dependencies:
+    three-pathfinding "^0.7.0"
+
+aframe-look-at-component@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/aframe-look-at-component/-/aframe-look-at-component-1.0.0.tgz#dfd960d11ccdd4d80b153bcc4eae4041d66421ba"
+  integrity sha512-urbsU4qaKg3drIShNDIrNQyuVh+yiFCbP50FMig7uDbVOlMZU3Tcj4oWbjxx3neD07Rn8atjpwBeqc6lceKGTw==
+
 aframe-particle-system-component@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/aframe-particle-system-component/-/aframe-particle-system-component-1.1.3.tgz#9d05732fab223e8c4392d20ae47bb29fa97067e9"
@@ -482,7 +516,7 @@ aframe-react@^4.4.0:
   resolved "https://registry.yarnpkg.com/aframe-react/-/aframe-react-4.4.0.tgz#f8af660bc4f64746d7cddb065ad9cc5e88f358b9"
   integrity sha512-/3C0fhCRJywLSP7JsZM/nG/bGQxbt8oEnRK3DLOUmcCtd6xulpwOf8i/Mb0Mbg/U77Y097wdSZ0mVXgEL2+u4Q==
 
-aframe@^1.3.0:
+aframe@^1.0.4, aframe@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/aframe/-/aframe-1.3.0.tgz#bafd544d6eca6542a38e56a13ae8b86d325cce8a"
   integrity sha512-f6OQaDf49SzdSxVskJPvPWldOwHpYMsGttmQHhU6FRiASsnyULKG1nqZom9pDuS3fFYEzQVqRMakQ2AhXeLkFg==
@@ -521,6 +555,13 @@ as-number@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/as-number/-/as-number-1.0.0.tgz#acb27e34f8f9d8ab0da9e376f3b8959860f80a66"
   integrity sha512-HkI/zLo2AbSRO4fqVkmyf3hms0bJDs3iboHqTrNuwTiCRvdYXM7HFhfhB6Dk51anV2LM/IMB83mtK9mHw4FlAg==
+
+axios@^0.26.0:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
+  integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
+  dependencies:
+    follow-redirects "^1.14.8"
 
 bidi-js@^1.0.2:
   version "1.0.2"
@@ -603,6 +644,11 @@ convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
+core-js@^3.24.1:
+  version "3.24.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.24.1.tgz#cf7724d41724154010a6576b7b57d94c5d66e64f"
+  integrity sha512-0QTBSYSUZ6Gq21utGzkfITDylE8jWC9Ne1D2MrhvlsZBI1x39OdDIVbzSqtgMndIy6BlHxBXpMGqzZmnztg2rg==
+
 csstype@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
@@ -625,7 +671,7 @@ debug@^4.1.0:
   dependencies:
     ms "2.1.2"
 
-"debug@github:ngokevin/debug#noTimestamp":
+debug@ngokevin/debug#noTimestamp:
   version "2.2.0"
   resolved "https://codeload.github.com/ngokevin/debug/tar.gz/ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a"
 
@@ -655,7 +701,7 @@ detect-gpu@^4.0.19:
   dependencies:
     webgl-constants "^1.1.1"
 
-"document-register-element@github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90":
+document-register-element@dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90:
   version "0.5.4"
   resolved "https://codeload.github.com/dmarcos/document-register-element/tar.gz/8ccc532b7f3744be954574caf3072a5fd260ca90"
 
@@ -827,6 +873,11 @@ flatten-vertex-data@^1.0.0:
   integrity sha512-BvCBFK2NZqerFTdMDgqfHBwxYWnxeCkwONsw6PvBMcUXqo8U/KDWwmXhqx1x2kLIg7DqIsJfOaJFOmlua3Lxuw==
   dependencies:
     dtype "^2.0.0"
+
+follow-redirects@^1.14.8:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
+  integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
 
 fsevents@~2.3.2:
   version "2.3.2"
@@ -1391,7 +1442,7 @@ suspend-react@^0.0.8:
   resolved "https://registry.yarnpkg.com/suspend-react/-/suspend-react-0.0.8.tgz#b0740c1386b4eb652f17affe4339915ee268bd31"
   integrity sha512-ZC3r8Hu1y0dIThzsGw0RLZplnX9yXwfItcvaIzJc2VQVi8TGyGDlu92syMB5ulybfvGLHAI5Ghzlk23UBPF8xg==
 
-"three-bmfont-text@github:dmarcos/three-bmfont-text#21d017046216e318362c48abd1a48bddfb6e0733":
+three-bmfont-text@dmarcos/three-bmfont-text#21d017046216e318362c48abd1a48bddfb6e0733:
   version "2.4.0"
   resolved "https://codeload.github.com/dmarcos/three-bmfont-text/tar.gz/21d017046216e318362c48abd1a48bddfb6e0733"
   dependencies:
@@ -1414,6 +1465,11 @@ three-mesh-bvh@^0.5.10:
   resolved "https://registry.yarnpkg.com/three-mesh-bvh/-/three-mesh-bvh-0.5.15.tgz#bcf681d784d8988618344a5e11e7ded7e76ee86a"
   integrity sha512-jxE5iGjcoEMiyxUs7hMeZL6jBXBz9973ilqhXPhKlA1f7eitjIxRTtu7UWVQy+PhxXTsknmPzWmN5c+uAa/anA==
 
+three-pathfinding@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/three-pathfinding/-/three-pathfinding-0.7.0.tgz#bf64ec409bee6e7d8e19be96c7b40ebd7ef6f10d"
+  integrity sha512-UwWvzgio1UFe81n5jKHNzB4B+AG3wfZ54OKp7bTb1MHuC3cy6RTtr0dbbiPQQoqxzr+DRArR2DUwQSEknw5+nw==
+
 three-stdlib@^2.12.1, three-stdlib@^2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.13.0.tgz#48baf2f85a781437e42cd53f672ea44ccce4a801"
@@ -1429,6 +1485,11 @@ three-stdlib@^2.12.1, three-stdlib@^2.13.0:
     opentype.js "^1.3.3"
     potpack "^1.0.1"
     zstddec "^0.0.2"
+
+three@^0.133.0:
+  version "0.133.1"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.133.1.tgz#5606f4817d67a09d9212d4ccbd6826564774f8f4"
+  integrity sha512-WydohO8ll949B0FTD6MGz59Yv2Lwj8hvObg/0Heh2r42S6+tQC1WByfCNRdmG4D7+odfGod+n8JPV1I2xrboWw==
 
 three@^0.143.0:
   version "0.143.0"

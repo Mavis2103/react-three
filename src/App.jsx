@@ -1,73 +1,83 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './App.css';
-import Model from './Model';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment, OrbitControls } from '@react-three/drei';
-import { Suspense } from 'react';
+// import '@ar-js-org/ar.js';
+// import 'aframe-extras';
+// import 'aframe-look-at-component';
+
 function App() {
   const [h, setH] = useState();
+  const [distance, setDistance] = useState();
+
   const options = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0
   };
 
-  function success(pos) {
+  function success() {
+    setDistance(modelRef.current.getAttribute('distance'));
+  }
+  function init(pos) {
     const crd = pos.coords;
-
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
     // console.log(`More or less ${crd.accuracy} meters.`);
-    console.log(setH(distance(crd.latitude, 16.0575, crd.longitude, 108.1889)));
+    setH(crd);
   }
   useEffect(() => {
     if (h && h >= 0) {
-      alert(h);
+      // alert(h);
     }
   }, [h]);
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
+  const modelRef = useRef(null);
+  const cameraRef = useRef(null);
+  useLayoutEffect(() => {
+    modelRef.current.addEventListener('click', evt => {
+      console.log('I was clicked at: ', evt.detail.intersection.point);
+    });
+    navigator.geolocation.getCurrentPosition(init, error, options);
+  }, []);
   navigator.geolocation.watchPosition(success, error, options);
   return (
-    <div className='App'>
-      <div style={{ backgroundColor: 'blue' }}>{h}</div>
+    <>
+      <div style={{ backgroundColor: 'blue' }}>{distance}</div>
       <a-scene
-        renderer='logarithmicDepthBuffer: true;'
+        inspector='https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js'
         loading-screen='enabled: false;'
         arjs='sourceType: webcam; debugUIEnabled: false;'
-        raycaster='objects: [gps-entity-place];'
-        vr-mode-ui='enabled: false'>
-        <a-assets>
-          <a-asset-item
-            id='animated-asset'
-            src='https://raw.githubusercontent.com/FutureEyes/FutureEyes.github.io/main/arlocation/assets/asset.gltf'></a-asset-item>
-        </a-assets>
-        <a-entity id='ambientlight' light='type: ambient; intensity: 0.4;' target='#directionaltarget'></a-entity>
+        renderer='antialias: true; alpha: true'>
+        <a-entity id="'ambientlight" light='type: ambient; intensity: 0.4;'></a-entity>
         <a-light type='directional' position='0 0 0' rotation='0 0 0' target='#directionaltarget' />
-        <a-entity id='directionaltarget' position='0 0 -1'>
-          <a-entity
-            id='entity-model'
-            look-at='[gps-camera]'
-            animation-mixer='loop: repeat'
-            gltf-model='https://raw.githubusercontent.com/FutureEyes/FutureEyes.github.io/main/arlocation/assets/asset.gltf'
-            light='type: ambient; intensity: 0.4;'
-            scale='0.5 0.5 0.5'></a-entity>
-        </a-entity>
-        <a-camera gps-camera rotation-reader></a-camera>
+        <a-entity id='directionaltarget' position='0 0 -1'></a-entity>
+        <a-entity
+          ref={modelRef}
+          look-at='[gps-projected-camera]'
+          animation-mixer=''
+          class='collidable'
+          cursor-listener=''
+          gltf-model='https://raw.githubusercontent.com/FutureEyes/FutureEyes.github.io/main/arlocation/assets/asset.gltf'
+          light='type: ambient; intensity: 0.4;'
+          scale='0.8703297129127067 0.8703297129127067 0.8703297129127067'
+          gps-projected-entity-place={`latitude:${h?.latitude}; longitude:${h?.longitude};`}></a-entity>
+        <a-entity id='blockHand' laser-controls='right' raycaster='objects: .collidable' intersection-spawn='event: click; mixin: voxel'></a-entity>
+        <a-camera
+          gps-projected-camera
+          rotation-reader
+          // camera='far: 25; fov: 20'
+          // position='-0.09004 0.43306 8.61567'
+          // rotation=''
+          look-controls='reverseMouseDrag:  true'
+          wasd-controls=''
+          // data-aframe-inspector-original-camera=''
+        >
+          <a-entity raycaster='objects: .collidable' cursor='rayOrigin: mouse' intersection-spawn='event: click; mixin: voxel'></a-entity>
+        </a-camera>
       </a-scene>
-    </div>
-  );
-}
-function Thing() {
-  const ref = useRef();
-  useFrame(() => (ref.current.rotation.x = ref.current.rotation.y += 0.0));
-  return (
-    <mesh ref={ref} onClick={e => console.log('click')} onPointerOver={e => console.log('hover')} onPointerOut={e => console.log('unhover')}>
-      <meshPhysicalMaterial roughness={0} transmission={1} thickness={2} />
-      <icosahedronGeometry attach='geometry' args={[2, 0]} />
-    </mesh>
+    </>
   );
 }
 function distance(lat1, lat2, lon1, lon2) {
