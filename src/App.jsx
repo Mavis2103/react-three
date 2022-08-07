@@ -32,6 +32,7 @@ function App() {
   navigator.geolocation.getCurrentPosition(success, error, options);
   return (
     <div className='App'>
+      <div style={{ backgroundColor: 'blue' }}>{h}</div>
       <a-scene
         renderer='logarithmicDepthBuffer: true;'
         loading-screen='enabled: false;'
