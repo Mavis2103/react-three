@@ -54,6 +54,7 @@
   <script>
     document.addEventListener("DOMContentLoaded",()=>{
       navigator.geolocation.getCurrentPosition((crd)=>{
+        console.log(crd.coords);
         document.getElementById("model").setAttribute("gps-entity-place",`latitude:${crd.coords.latitude}; longitude:${crd.coords.longitude};`)
       })
     })
