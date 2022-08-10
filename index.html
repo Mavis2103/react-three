@@ -65,7 +65,7 @@
       console.log(`Longitude: ${crd.longitude}`);
       console.log(`More or less ${crd.accuracy} meters.`);
     }
-    document.addEventListener("DOMContentLoaded",()=>{
+    window.addEventListener("DOMContentLoaded",()=>{
       navigator.geolocation.getCurrentPosition(init,error,options)
     })
     AFRAME.registerComponent('cursor-listener', {
