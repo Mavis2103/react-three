@@ -61,7 +61,7 @@
       }
     });*/
     document.getElementById("cc").addEventListener('click', function (evt) {
-      window.postMessage('model--clicled', '*');
+      window.top.postMessage('model--clicled', '*');
       console.log('I was clicked at: ', evt.detail.intersection.point);
     });
   </script>
