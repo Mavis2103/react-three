@@ -38,9 +38,9 @@
         light="type: directional;castShadow: true;intensity: 0.35;shadowCameraVisible: true;"
         reflection="directionalLight:a-light#dirlight;"
         scale="1.2184615980777895 1.2184615980777895 1.2184615980777895"
-        gps-entity-place=""
+        gps-entity-place="latitude:10.661417; longitude:106.536439"
       ></a-entity>
-      <a-camera gps-camera="" rotation-reader="" camera="" rotation="" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="">
+      <a-camera gps-camera="simulateLatitude:10.661417; simulateLongitude:106.536439" rotation-reader="" camera="" rotation="" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="">
         <!-- <a-entity
           raycaster="objects: .collidable"
           cursor="rayOrigin: mouse"
@@ -52,25 +52,6 @@
     </a-scene>
   </body>
   <script>
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-    function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-    function init(pos) {
-      const crd = pos.coords;
-      document.getElementById("model").setAttribute("gps-entity-place",`latitude:${crd.latitude}; longitude:${crd.longitude};`)
-      console.log('Your current position is:');
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
-    }
-    navigator.geolocation.getCurrentPosition(init,error,options)
-    // window.addEventListener("DOMContentLoaded",()=>{
-    // })
     AFRAME.registerComponent('cursor-listener', {
       init: function () {
         this.el.addEventListener('click', function (evt) {
