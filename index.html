@@ -52,11 +52,22 @@
     </a-scene>
   </body>
   <script>
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function init(pos) {
+      const crd = pos.coords;
+      document.getElementById("model").setAttribute("gps-entity-place",`latitude:${crd.latitude}; longitude:${crd.longitude};`)
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
     document.addEventListener("DOMContentLoaded",()=>{
-      navigator.geolocation.getCurrentPosition((crd)=>{
-        console.log(crd.coords);
-        document.getElementById("model").setAttribute("gps-entity-place",`latitude:${crd.coords.latitude}; longitude:${crd.coords.longitude};`)
-      })
+      navigator.geolocation.getCurrentPosition(init,error,options)
     })
     AFRAME.registerComponent('cursor-listener', {
       init: function () {
