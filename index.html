@@ -28,7 +28,7 @@
       <a-entity id="directionaltarget" position="0 0 -1"></a-entity>
       <!--- Quan house -->
       <a-entity
-        id="cc"
+        id="model"
         class="collidable"
         look-at="[gps-camera]"
         animation-mixer=""
@@ -38,7 +38,7 @@
         light="type: directional;castShadow: true;intensity: 0.35;shadowCameraVisible: true;"
         reflection="directionalLight:a-light#dirlight;"
         scale="1.2184615980777895 1.2184615980777895 1.2184615980777895"
-        gps-entity-place="latitude:16.067469; longitude:108.197031;"
+        gps-entity-place=""
       ></a-entity>
       <a-camera gps-camera="" rotation-reader="" camera="" rotation="" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="">
         <!-- <a-entity
@@ -52,17 +52,20 @@
     </a-scene>
   </body>
   <script>
-    /*AFRAME.registerComponent('cursor-listener', {
+    document.addEventListener("DOMContentLoaded",()=>{
+      navigator.geolocation.getCurrentPosition((crd)=>{
+        document.getElementById("model").setAttribute("gps-entity-place",`latitude:${crd.coords.latitude}; longitude:${crd.coords.longitude};`)
+      })
+    })
+    AFRAME.registerComponent('cursor-listener', {
       init: function () {
         this.el.addEventListener('click', function (evt) {
-          window.postMessage('model--clicled', '*');
+          window.top.postMessage('model--clicled', '*');
           console.log('I was clicked at: ', evt.detail.intersection.point);
         });
       }
-    });*/
-    document.getElementById("cc").addEventListener('click', function (evt) {
-      window.top.postMessage('model--clicled', '*');
-      console.log('I was clicked at: ', evt.detail.intersection.point);
     });
+    // document.getElementById("model").addEventListener('click', function (evt) {
+    // });
   </script>
 </html>
