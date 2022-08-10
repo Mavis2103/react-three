@@ -56,7 +56,9 @@
       timeout: 5000,
       maximumAge: 0
     };
-
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
     function init(pos) {
       const crd = pos.coords;
       document.getElementById("model").setAttribute("gps-entity-place",`latitude:${crd.latitude}; longitude:${crd.longitude};`)
@@ -65,9 +67,9 @@
       console.log(`Longitude: ${crd.longitude}`);
       console.log(`More or less ${crd.accuracy} meters.`);
     }
-    window.addEventListener("DOMContentLoaded",()=>{
-      navigator.geolocation.getCurrentPosition(init,error,options)
-    })
+    navigator.geolocation.getCurrentPosition(init,error,options)
+    // window.addEventListener("DOMContentLoaded",()=>{
+    // })
     AFRAME.registerComponent('cursor-listener', {
       init: function () {
         this.el.addEventListener('click', function (evt) {
