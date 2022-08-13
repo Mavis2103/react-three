@@ -47,14 +47,21 @@
           intersection-spawn="event: click; mixin: voxel"
           position="0 0 5"
         ></a-entity> -->
-        <a-entity raycaster="objects: .collidable"></a-entity>
+        <a-entity raycaster="objects: .collidable" intersection-spawn="event: click; mixin: voxel"></a-entity>
       </a-camera>
     </a-scene>
   </body>
   <script>
+    /*AFRAME.registerComponent('cursor-listener', {
+      init: function () {
+        this.el.addEventListener('click', function (evt) {
+          window.top.postMessage('model--clicled', '*');
+          console.log('I was clicked at: ', evt.detail.intersection.point);
+        });
+      }
+    });*/
     document.getElementById("model").addEventListener("click",evt =>{
-      console.log(evt.target);
-      //window.top.postMessage('model--clicled', '*');
+      window.top.postMessage('model--clicled', '*');
       console.log('I was clicked at: ', evt.detail.intersection.point);
     })
   </script>
