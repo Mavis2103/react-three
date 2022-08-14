@@ -30,7 +30,18 @@
     </style>
   </head>
   <body>
-    <model-viewer enable-pan src="HP-glass-10.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls shadow-intensity="1" auto-rotate>
+    <model-viewer
+      id="TriipHP"
+      src="HP-glass-10.glb"
+      poster=""
+      alt="A HP"
+      shadow-intensity="1.5"
+      environment-image="neutral"
+      camera-controls
+      auto-rotate
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+    >
       <button
         class="Hotspot"
         slot="hotspot-5"
