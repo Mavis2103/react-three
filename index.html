@@ -30,32 +30,44 @@
     </style>
   </head>
   <body>
-    <!-- <model-viewer> HTML element -->
     <model-viewer
-      id="TriipHP"
+      enable-pan
       src="HP-glass-10.glb"
-      poster=""
-      alt="A HP"
-      shadow-intensity="1.5"
-      environment-image="neutral"
-      camera-controls
-      auto-rotate
       ar
-      ar-modes="webxr scene-viewer quick-look"
+      ar-modes="scene-viewer webxr quick-look"
+      camera-controls
+      poster="poster.webp"
+      shadow-intensity="1"
+      auto-rotate
     >
-      <!-- <button slot="ar-button" id="ar-button" >
-          View in your space
-      </button> -->
+      <button
+        class="Hotspot"
+        slot="hotspot-5"
+        data-position="-0.01102168315307539m 0.06315330262199934m 0.05971774864367174m"
+        data-normal="-0.36163304431533727m 0.022759635555832422m 0.932042670830358m"
+        data-visibility-attribute="visible"
+      >
+        <div class="HotspotAnnotation">Get Item</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">View in your space</button>
       <div id="ar-prompt">
-        <img src="ar_hand_prompt.png" />
+        <img src="https://modelviewer.dev/shared-assets/icons/hand.png" />
       </div>
     </model-viewer>
-    <script src="script.js"></script>
+    <script>
+      document.querySelector('.HotspotAnnotation').addEventListener('click', e => {
+        window.top.postMessage('model--clicled', '*');
+      });
+    </script>
+    <!-- <script src="script.js"></script>
     <script>
       const modelViewerVariants = document.querySelector('model-viewer#chair');
       const modelViewer = document.querySelector('#chair');
-      document.getElementById('color-controls').style.display = 'none';
-      document.getElementById('qr-image').style.display = 'none';
+      document.getElementById('color-controls')?.style.display = 'none';
+      document.getElementById('qr-image')?.style.display = 'none';
       var timer;
 
       var modal = document.getElementById('myModal');
@@ -94,7 +106,7 @@
           document.getElementById('qr-image').style.display = '';
         }
       });
-    </script>
+    </script> -->
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   </body>
