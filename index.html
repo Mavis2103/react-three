@@ -1,64 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title>Triip HP</title>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden">
-    <a-scene
-      inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
-      renderer="logarithmicDepthBuffer: true;"
-      embedded
-      loading-screen="enabled: false;"
-      arjs="sourceType: webcam; debugUIEnabled: false;"
-      vr-mode-ui="enabled: false"
-    >
-      <a-assets>
-        <a-asset-item
-          id="animated-asset"
-          src="https://raw.githubusercontent.com/FutureEyes/FutureEyes.github.io/main/arlocation/assets/asset.gltf"
-        ></a-asset-item>
-      </a-assets>
-      <a-entity id="'ambientlight" light="type: ambient; intensity: 0.4;"></a-entity>
-      <a-light type="directional" position="0 0 0" rotation="0 0 0" target="#directionaltarget"></a-light>
-      <a-entity id="directionaltarget" position="0 0 -1"></a-entity>
-      <!--- Quan house -->
-      <a-entity
-        id="model"
-        class="collidable"
-        look-at="[gps-camera]"
-        animation-mixer=""
-        cursor-listener
-        gltf-model="#animated-asset"
-        light="type: ambient; intensity: 0.4;"
-        light="type: directional;castShadow: true;intensity: 0.35;shadowCameraVisible: true;"
-        reflection="directionalLight:a-light#dirlight;"
-        scale="1.2184615980777895 1.2184615980777895 1.2184615980777895"
-        gps-entity-place="latitude:10.661417; longitude:106.536439"
-      ></a-entity>
-      <a-camera gps-camera="simulateLatitude:10.661417; simulateLongitude:106.536439" rotation-reader="" camera="" rotation="" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="">
-        <!-- <a-entity
-          raycaster="objects: .collidable"
-          cursor="rayOrigin: mouse"
-          intersection-spawn="event: click; mixin: voxel"
-          position="0 0 5"
-        ></a-entity> -->
-        <a-entity raycaster="objects: .collidable" cursor="rayOrigin: entity" intersection-spawn="event: click; mixin: voxel"></a-entity>
-      </a-camera>
-    </a-scene>
-  </body>
-  <script>
-    AFRAME.registerComponent('cursor-listener', {
-      init: function () {
-        this.el.addEventListener('click', function (evt) {
-          window.top.postMessage('model--clicled', '*');
-          console.log('I was clicked at: ', evt.detail.intersection.point);
-        });
+    <meta name="description" content="&lt;model-viewer&gt; template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="text/css" href="./styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
+    <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
+    <style>
+      body {
+        overflow: hidden;
       }
-    });
-  </script>
+      input {
+        position: absolute;
+        display: none;
+      }
+
+      * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      /*end toggle2*/
+    </style>
+  </head>
+  <body>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer
+      id="TriipHP"
+      src="HP-glass-10.glb"
+      poster=""
+      alt="A HP"
+      shadow-intensity="1.5"
+      environment-image="neutral"
+      camera-controls
+      auto-rotate
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+    >
+      <!-- <button slot="ar-button" id="ar-button" >
+          View in your space
+      </button> -->
+      <div id="ar-prompt">
+        <img src="ar_hand_prompt.png" />
+      </div>
+    </model-viewer>
+    <script src="script.js"></script>
+    <script>
+      const modelViewerVariants = document.querySelector('model-viewer#chair');
+      const modelViewer = document.querySelector('#chair');
+      document.getElementById('color-controls').style.display = 'none';
+      document.getElementById('qr-image').style.display = 'none';
+      var timer;
+
+      var modal = document.getElementById('myModal');
+
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      var img = document.getElementById('myImg');
+      var modalImg = document.getElementById('img01');
+      img.onclick = function () {
+        modal.style.display = 'block';
+        modalImg.src = 'https://cdn.glitch.com/86f43516-6172-4a58-b9a2-46c74478d5a7%2Fqr-code.png?v=1626090973247';
+      };
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName('close')[0];
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = 'none';
+      };
+
+      function keepOn() {
+        window.clearTimeout(timer);
+      }
+
+      function resetTime() {
+        timer = window.setTimeout(() => {
+          document.getElementById('color-controls').style.display = 'none';
+        }, 4000);
+      }
+
+      modelViewerVariants.addEventListener('load', () => {
+        document.getElementById('color-controls').style.display = '';
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+          //Nothing
+        } else {
+          document.getElementById('qr-image').style.display = '';
+        }
+      });
+    </script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  </body>
 </html>
